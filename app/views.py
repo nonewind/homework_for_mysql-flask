@@ -4,10 +4,10 @@ import json
 import pymysql
 
 connection = pymysql.connect(
-        host='39.106.76.120',
-        user='root',
-        password='ZZH9472zzh',
-        db='sheji'
+        host='HOST',
+        user='DB_USER',
+        password='PASSWORD',
+        db='DBNAME'
     )
 
 
