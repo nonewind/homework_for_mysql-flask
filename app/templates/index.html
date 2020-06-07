@@ -1,0 +1,105 @@
+{% extends "base.html" %} {% block content %}
+<div style="text-align: center; margin: 0 auto; margin-top: 190px;">
+  <p style="font-size: 25px; font-weight: bolder;">^在线旅游管理系统^</p>
+</div>
+<div style="
+    border: 1px solid #000;
+    width: 600px;
+    height: 400px;
+    text-align: center;
+    margin: 0 auto;
+    background-color: white;
+  ">
+  <div style="text-align: center; margin: 0 auto; margin-top: 10px;">
+    <span>
+      <p style="font-size: 20px; font-weight: bolder;">Log In</p>
+    </span>
+  </div>
+  <div style="
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 50px;
+      margin-left: -420px;
+    ">
+    <span>
+      <p style="font-size: 20px; font-weight: bolder;">账户:</p>
+    </span><input id="username" type="text" style="
+        text-align: center;
+        margin: 0 auto;
+        margin-top: -45px;
+        margin-left: 500px;
+        width: 300px;
+        height: 30px;
+      " />
+  </div>
+  <div style="
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 50px;
+      margin-left: -420px;
+    ">
+    <span>
+      <p style="font-size: 20px; font-weight: bolder;">密码:</p>
+    </span><input id="password" type="text" style="
+        text-align: center;
+        margin: 0 auto;
+        margin-top: -45px;
+        margin-left: 500px;
+        width: 300px;
+        height: 30px;
+      " />
+  </div>
+  <div style="
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 50px;
+      margin-left: -320px;
+    ">
+    <button style="width: 60px; height: 40px;" onclick="login()">登录</button>
+  </div>
+  <div style="
+      text-align: center;
+      margin: 0 auto;
+      margin-top: -40px;
+      margin-left: 280px;
+    ">
+    <button style="width: 60px; height: 40px;">注册</button>
+  </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+  function login() {
+    var user = document.getElementById("username").value;
+    var passwd = document.getElementById("password").value;
+    if (user == '') { alert("请输入用户名！！！") }
+    else if (passwd == '') { alert("请输入密码！！！") }
+    else { apex_ajx(user, passwd) }
+  }
+
+  function apex_ajx(user, passwd) {
+    data = JSON.stringify({
+      user: user,
+      passwd: passwd
+    })
+    $.ajax({
+      type: 'POST',
+      url: '/login',
+      data: data,
+      contentType: 'application/json; charset=UTF-8',
+      success: function (data) {
+        if (data['ok'] == '0') {
+          alert("登录名或者密码错误，请重新输入！")
+        } else{
+          window.location.href="/admin";
+         }
+      },
+      error: function (xhr, type) {
+      }
+    })
+
+
+  }
+
+
+</script>
+{% endblock%}

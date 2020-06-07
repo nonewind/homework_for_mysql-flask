@@ -1,0 +1,295 @@
+{% extends "base.html" %} {% block content %}
+<div
+  style="
+    margin: 0 auto;
+    margin-top: 190px;
+    width: 100%;
+    height: 100px;
+    background-color: #0665d0;
+    margin-top: 0px;
+  "
+>
+  <div
+    style="
+      margin: 0 auto;
+      /* height: 100px; */
+      height: 30px;
+      width: 300px;
+      position: absolute;
+      left: 50px;
+      top: 10px;
+    "
+  >
+    <span>
+      <p style="font-size: 25px; font-weight: bolder;">
+        欢迎使用在线旅游管理系统
+      </p>
+    </span>
+  </div>
+</div>
+
+<div
+  style="
+    position: absolute;
+    margin: 0 auto;
+    margin-left: 0px;
+    width: 200px;
+    height: 90%;
+    background-color: #f4f6fa;
+  "
+>
+  <div class="style_div_list" onclick="add_views()">
+    <p style="font-size: 20px; color: #000; text-align: center; height: 100%;">
+      景点信息录入
+    </p>
+  </div>
+  <div class="style_div_list" onclick="add_guide()">
+    <p style="font-size: 20px; color: #000; text-align: center;">
+      导游信息录入
+    </p>
+  </div>
+  <div class="style_div_list" onclick="add_visitor()">
+    <p style="font-size: 20px; color: #000; text-align: center;">
+      游客信息录入
+    </p>
+  </div>
+  <div class="style_div_list" onclick="add_user()">
+    <p style="font-size: 20px; color: #000; text-align: center;">
+      用户信息录入
+    </p>
+  </div>
+  <div class="style_div_list_cover">
+    <p style="font-size: 15px; color: #000; text-align: center;">
+      powered by 张子恒
+    </p>
+  </div>
+</div>
+
+<div
+  style="
+    position: absolute;
+    margin: 0 auto;
+    right: 0px;
+    width: 85%;
+    height: 90%;
+    background-color: #f4f6fa;
+
+  "
+>
+  <div id="view_add" style="visibility: hidden;position: absolute; top: 0px;z-index: 9999;">
+    <p style="font-size: 20px; font-weight: bolder;">景点信息录入</p>
+
+    <input
+      id="name_get"
+      type="text"
+      style="
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 200px;
+        margin-left: 200px;
+        width: 300px;
+        height: 30px;
+      "
+      placeholder="请输入景点名称"
+    />
+    <input
+      id="jianjie_get"
+      type="text"
+      style="
+        text-align: center;
+        margin: 0 auto;
+        margin-top: -61px;
+        margin-left: 200px;
+        width: 300px;
+        height: 30px;
+      "
+      placeholder="请输入景点简介"
+    />
+    <button
+      style="width: 60px; height: 40px; margin-top: -61px;"
+      onclick="add_views_now()"
+    >
+      提交
+    </button>
+  </div>
+
+  <div
+    style="
+      position: absolute;
+      margin: 0 auto;
+      right: 0px;
+      width: 85%;
+      height: 90%;
+      background-color: #f4f6fa;
+      z-index: 999;
+    "
+  >
+    <div
+      id="guide_add"
+      style="visibility: hidden; position: absolute; top: 0px; "
+    >
+      <p style="font-size: 20px; font-weight: bolder;">导游信息录入</p>
+      <input
+        id="name_get_guide"
+        type="text"
+        style="
+          text-align: center;
+          margin: 0 auto;
+          margin-top: 200px;
+          margin-left: 200px;
+          width: 300px;
+          height: 30px;
+        "
+        placeholder="请输入导游姓名"
+      />
+      <input
+        id="zhuanye_get_guide"
+        type="text"
+        style="
+          text-align: center;
+          margin: 0 auto;
+          margin-top: -61px;
+          margin-left: 200px;
+          width: 300px;
+          height: 30px;
+        "
+        placeholder="请输入导游专业"
+      />
+      <input
+        id="views_get_guide"
+        type="text"
+        style="
+          text-align: center;
+          margin: 0 auto;
+          margin-top: -61px;
+          margin-left: 200px;
+          width: 300px;
+          height: 30px;
+        "
+        placeholder="请输入导游所在景点"
+      />
+      <button
+        style="width: 60px; height: 40px; margin-top: -61px;"
+        onclick="add_guide_now()"
+      >
+        提交
+      </button>
+    </div>
+
+    <div
+      id="visitor_add"
+      style="visibility: hidden; position: absolute; top:0px;"
+    >
+      <p style="font-size: 20px; font-weight: bolder;">游客信息录入</p>
+      <input
+        id="name_get_vis"
+        type="text"
+        style="
+          text-align: center;
+          margin: 0 auto;
+          margin-top: 200px;
+          margin-left: 200px;
+          width: 300px;
+          height: 30px;
+        "
+        placeholder="请输入游客姓名"
+      />
+      <input
+        id="sex_get_vis"
+        type="text"
+        style="
+          text-align: center;
+          margin: 0 auto;
+          margin-top: -61px;
+          margin-left: 200px;
+          width: 300px;
+          height: 30px;
+        "
+        placeholder="请输入游客性别（可以留空）"
+      />
+      <input
+        id="tel_get_vis"
+        type="text"
+        style="
+          text-align: center;
+          margin: 0 auto;
+          margin-top: -61px;
+          margin-left: 200px;
+          width: 300px;
+          height: 30px;
+        "
+        placeholder="请输入游客电话（可以留空）"
+      />
+      <button
+        style="width: 60px; height: 40px; margin-top: -61px;"
+        onclick="add_visitor_now()"
+      >
+        提交
+      </button>
+    </div>
+
+    <div id="user_add" style="visibility: hidden; position: absolute;top: 0px; ">
+        <p style="font-size: 20px; font-weight: bolder;">用户信息录入</p>
+    
+        <input
+          id="username"
+          type="text"
+          style="
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 200px;
+            margin-left: 200px;
+            width: 300px;
+            height: 30px;
+          "
+          placeholder="请输入用户名"
+        />
+        <input
+          id="passwd"
+          type="text"
+          style="
+            text-align: center;
+            margin: 0 auto;
+            margin-top: -61px;
+            margin-left: 200px;
+            width: 300px;
+            height: 30px;
+          "
+          placeholder="请输入用户密码"
+        />
+        <button
+          style="width: 60px; height: 40px; margin-top: -61px;"
+          onclick="add_user_now()"
+        >
+          提交
+        </button>
+      </div>
+  </div>
+  <style>
+    .style_div_list {
+      margin-top: 20px;
+      width: 200px;
+      height: 30px;
+      border-radius: 25px;
+    }
+
+    .style_div_list:hover {
+      background-color: #1f75d5;
+      -webkit-transition: 0.1s ease-in-out;
+      /*平滑的过渡 */
+      -moz-transition: 0.1s ease-in-out;
+      /*兼容其他浏览器*/
+      -o-transition: 0.1s ease-in-out;
+    }
+
+    .style_div_list_cover {
+      position: relative;
+      top: 70%;
+      width: 200px;
+      height: 30px;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+  <script src="/static/js/admin.js"></script></div>
+  {% endblock%}
+
